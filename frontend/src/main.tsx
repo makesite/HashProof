@@ -1,0 +1,22 @@
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { WagmiProvider } from "wagmi";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { config } from "./wagmi";
+import App from "./App";
+import "./index.css";
+import "@rainbow-me/rainbowkit/styles.css";
+
+const qc = new QueryClient();
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={qc}>
+        <RainbowKitProvider theme={darkTheme()}>
+          <App />
+        </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
+  </StrictMode>
+);
